@@ -1,0 +1,28 @@
+
+<div class="mat-elevation-z2" style="width: 30%; padding: 30px; margin: 50px auto; display: flex;justify-content: center;">
+    <form [formGroup]="notaForm">
+        <div class="flex">
+            <mat-form-field>
+                <mat-label>Titulo de la Nota</mat-label>
+                <input matInput  formControlName="sTitulo">
+              </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field>
+                <mat-label>Descripción</mat-label>
+                <input matInput  formControlName="sDescripcion">
+              </mat-form-field>
+        </div>
+        
+        <div class="flex">
+            @if (nIdNota() > 0) {
+                <button mat-flat-button color="primary" (click)="actualizarNota()">Actualizar</button>
+            } @else {
+                <button mat-flat-button color="primary" (click)="guardarNota()">Guardar</button>
+            }
+            <button mat-flat-button color="warn" (click)="volver()" style="margin-left: 8px;">Volver</button>
+        </div>
+
+    </form>
+
+</div>

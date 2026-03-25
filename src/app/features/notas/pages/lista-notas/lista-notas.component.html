@@ -1,0 +1,56 @@
+<mat-card style="width: 70%; margin: 50px auto">
+
+    <mat-card-header>
+        <mat-card-title><p>Lista de notas creadas</p></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <button mat-flat-button color="primary" (click)="nuevo()">Nueva Nota</button>
+
+        <table mat-table [dataSource]="listaNotas" class="mat-elevation-z2" style="margin-top:20px">
+
+            <ng-container matColumnDef="accion">
+                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="primary" (click)="editar(element)">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button color="warn" (click)="eliminar(element)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="sTitulo">
+              <th mat-header-cell *matHeaderCellDef> Título </th>
+              <td mat-cell *matCellDef="let element"> {{element.sTitulo}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="sDescripcion">
+              <th mat-header-cell *matHeaderCellDef> Descripción </th>
+              <td mat-cell *matCellDef="let element"> {{element.sDescripcion}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="dFechaCreacion">
+              <th mat-header-cell *matHeaderCellDef> Fecha de Creación </th>
+              <td mat-cell *matCellDef="let element"> {{element.dFechaCreacion | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="dFechaModificacion">
+              <th mat-header-cell *matHeaderCellDef> Fecha de Modificación </th>
+              <td mat-cell *matCellDef="let element"> {{element.dFechaModificacion | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="bEstado">
+              <th mat-header-cell *matHeaderCellDef> Estado </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.bEstado ? 'Activo' : 'Inactivo'}}  
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{
+                'row-make-gray': row.bEstado == false
+              }"></tr>
+          </table>
+    </mat-card-content>
+  </mat-card>
